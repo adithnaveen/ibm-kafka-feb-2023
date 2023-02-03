@@ -20,4 +20,14 @@
 ### Step 3 
 > Add Kafka to system path - kafka_2.13-3.1.0/bin 
 
+### Additional Softwares 
+> Docker - https://www.docker.com/products/docker-desktop/
+> Eclipse JEE - https://www.eclipse.org/downloads/
+
+
+
+
+
+
+
 
