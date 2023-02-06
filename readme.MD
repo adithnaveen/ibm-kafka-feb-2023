@@ -94,8 +94,16 @@
 - create topic 
 > bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic first_topic 
 
+> bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic second-topic
 
+> bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic third-topic
 
+> bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic first_topic 
+
+> bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic first_topic 
+
+- to read all data 
+> bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic first_topic --from-beginning 
 
 
 
