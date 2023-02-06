@@ -105,8 +105,21 @@
 - to read all data 
 > bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic first_topic --from-beginning 
 
+- to describe the topic 
+> kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic first_topic
+
+- to describe all topics 
+> kafka-topics.sh --bootstrap-server localhost:9092 --describe 
 
 
+- passing key,value 
+> kafka-console-producer.sh --bootstrap-server localhost:9092 --topic second-topic --property parse.key=true --property key.separator=: 
 
+
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic second-topic --property print.key=true --property print.value=true
+
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic second-topic --property print.key=true --property print.value=true --property print.timestamp=true
+
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic second-topic --property print.key=true --property print.value=true --property print.timestamp=true --formatter kafka.tools.DefaultMessageFormatter
 
 
