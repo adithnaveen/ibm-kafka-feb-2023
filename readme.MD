@@ -179,27 +179,64 @@
 - descirbe the topic 
 > kafka-topics.sh --bootstrap-server localhost:9092 --topic d2-first-topic --describe
 
-
-> kafka-topics.sh --bootstrap-server localhost:9092 --topic d2-first-topic --describe 
-
-
 - as of now this does not work (single kakfa)
 > kafka-topics.sh --bootstrap-server localhost:9092 --create --topic d2-second-topic --partitions 3 --replication-factor 3
 
-- without group 
+- without group (which shall consume all the message produced by producer)
 - kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic
 
 
-- with group 
-- kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group first-application
+- with group (2 consumer, where data is balanced between 2 consumer)
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group first-application
 
-
-- kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group second-application
-
-- kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group second-application
-
-- kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group second-application
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group first-application
 
 
 
+- with group (3 consumer, where data is balanced between 3 consumer)
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group second-application
 
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group second-application
+
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group second-application
+
+
+- working with lag and resetting lags 
+
+```
+> kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group first-application
+
+GROUP             TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                           HOST            CLIENT-ID
+first-application d2-first-topic  0          28              28              0               console-consumer-c30baba0-1292-45c3-aa6c-47cca7300d2a /192.168.29.183 console-consumer
+first-application d2-first-topic  1          17              17              0               console-consumer-c30baba0-1292-45c3-aa6c-47cca7300d2a /192.168.29.183 console-consumer
+first-application d2-first-topic  2          25              25              0               console-consumer-f95a6fd3-e5cf-4ead-a471-d5ab3f1c2fb6 /192.168.29.183 console-consumer
+$
+
+```
+- close all the consumers of first-application, you will get similar to this where no consumer is connected, and not there is a lag value 
+- if the lag is 0 it means all the records are consumed 
+```
+ >    kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group first-application
+
+Consumer group 'first-application' has no active members.
+
+GROUP             TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID     HOST            CLIENT-ID
+first-application d2-first-topic  0          28              30              2               -               -               -
+first-application d2-first-topic  1          17              18              1               -               -               -
+first-application d2-first-topic  2          25              26              1               -               -               -
+```
+
+- up the consumer 
+
+```
+ > kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group first-application
+
+GROUP             TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                           HOST            CLIENT-ID
+first-application d2-first-topic  0          30              30              0               console-consumer-ab9e8407-e9bb-43de-87e5-fddae7573e15 /192.168.29.183 console-consumer
+first-application d2-first-topic  1          18              18              0               console-consumer-ab9e8407-e9bb-43de-87e5-fddae7573e15 /192.168.29.183 console-consumer
+first-application d2-first-topic  2          26              26              0               console-consumer-ab9e8407-e9bb-43de-87e5-fddae7573e15 /192.168.29.183 console-consumer
+```
+
+
+- OLTP - SAGA 
+- OLAP - Reporting 
