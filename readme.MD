@@ -115,7 +115,6 @@
 - passing key,value 
 > kafka-console-producer.sh --bootstrap-server localhost:9092 --topic second-topic --property parse.key=true --property key.separator=: 
 
-
 > kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic second-topic --property print.key=true --property print.value=true
 
 > kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic second-topic --property print.key=true --property print.value=true --property print.timestamp=true
