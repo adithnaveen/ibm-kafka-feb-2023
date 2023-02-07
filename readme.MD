@@ -122,3 +122,84 @@
 > kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic second-topic --property print.key=true --property print.value=true --property print.timestamp=true --formatter kafka.tools.DefaultMessageFormatter
 
 
+# Day 2 
+
+- Monolithic 
+    - View 
+    - BL 
+    - DB 
+    - Service
+    - DAO 
+
+- Microservice 
+    - login 
+    - sso 
+    - stock
+    - Order
+    - Product
+    - Video 
+    - Likes
+    - Dislikes
+    - Comments 
+
+- ESB Service Providers 
+    - Kafka 
+    - Open MQ 
+    - Rabbit MQ
+    - Mule Soft 
+    - Tibco 
+    ... 
+
+- Kafka 
+    - JVM - Platform independent 
+    - Scala 
+        - Groovy, Ruby, R, Splunk (Utility)... 
+    - They are reactive in nature 
+        - who introduced async coding with JVM 
+        - Java 8 - upto that it was only sync code, thick code, functional programming -> 
+        - asycn, Reactive support 
+
+- In DB you can query, in Kafka you cannot query 
+    - to send message you need kafka producer 
+    - to get message you need kafka consumer - which acts like subscriber 
+
+- by default the messages in kafka is kept for - 1 week 
+- by default every topic shall have 1 partition 
+- Kafka 2.x - zookeeper is mandatory 
+- Kafka 3.x - zookeeper is not mandatory, it is not production ready, it is at POC stage, KRAFT (Kafka Raft)
+- Kafka 4.x - Zookeeper shall be removed 
+
+
+
+## working with partitions 
+
+- create topic with 3 partitions 
+> kafka-topics.sh --bootstrap-server localhost:9092 --create --topic d2-first-topic --partitions 3
+
+- descirbe the topic 
+> kafka-topics.sh --bootstrap-server localhost:9092 --topic d2-first-topic --describe
+
+
+> kafka-topics.sh --bootstrap-server localhost:9092 --topic d2-first-topic --describe 
+
+
+- as of now this does not work (single kakfa)
+> kafka-topics.sh --bootstrap-server localhost:9092 --create --topic d2-second-topic --partitions 3 --replication-factor 3
+
+- without group 
+- kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic
+
+
+- with group 
+- kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group first-application
+
+
+- kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group second-application
+
+- kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group second-application
+
+- kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group second-application
+
+
+
+
