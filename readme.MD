@@ -195,9 +195,7 @@
 
 - with group (3 consumer, where data is balanced between 3 consumer)
 > kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group second-application
-
 > kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group second-application
-
 > kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group second-application
 
 
@@ -240,3 +238,48 @@ first-application d2-first-topic  2          26              26              0  
 
 - OLTP - SAGA 
 - OLAP - Reporting 
+
+- even in the group you can get all the messages from beginning 
+
+- will the messages from current point 
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group third-application
+
+> kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group third-application
+
+> kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic d2-first-topic --group fourth-application --from-beginning
+
+
+- resetting offsets
+
+- this will not work, pls ensure to have --execute and --topic or --all-topics 
+> kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group third-application --reset-offsets --to-earliest
+
+- resetting shall work (and it will take the offset value to 0)
+> kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group third-application --reset-offsets --to-earliest --execute --topic d2-first-topic
+
+- describe to check 
+- kafka-consumer-group.sh --bootstrap-server localhost:9092 --describe --group --third-application 
+
+- resetting  by -5 (Before) values 
+> kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group third-application --reset-offsets --shift-by -5 --execute --topic d2-first-topic
+
+- resetting  by 5 (After) values 
+> kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group third-application --reset-offsets --shift-by 5 --execute --topic d2-first-topic
+
+
+---- 
+
+## working with Kafka and Java 
+
+1. Java 11 (Done)
+2. Kafka (Done)
+3. [Eclipse / IntellJ - IDE] / [VS Code / Nodepad ++  - Editors]
+4. Maven (Implicitly has Maven) - Dependency Management Tool 
+    - 3.1 Kafka Client (Maven Dependency in pom.xml)
+    - 3.2 Logger slf4j + simple 
+5. Program 
+    - 5.1 Configuration - bootstrap details 
+    - 5.2 Producer 
+    - 5.3 generate a record 
+    - 5.4 Send and get the ack 
+    - 5.5 close + flush 
