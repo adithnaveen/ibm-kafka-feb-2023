@@ -294,11 +294,28 @@ first-application d2-first-topic  2          26              26              0  
 - retro of java producer program 
 
 ## Agenda 
-- Kafka Consumer 
-- Send Multiple messages with Java to Kafka 
-- Send Json (Serialize / Deserialize) - Show connecting (Mock) with DB 
-- Process Large data into your system (Wikimedia)
+- Kafka Consumer-Java program  (Done)
+- Send Multiple messages with Java to Kafka (Done)
+- Send Json (Serialize / Deserialize) - Show connecting (Mock) with DB (Done)
+- Process Large data into your system (Wikimedia) (done)
 - KRaft - Start Kafka Without Zookeeper
+
+```
+    $ ./bin/kafka-storage.sh
+    usage: kafka-storage [-h] {info,format,random-uuid} ...
+    kafka-storage: error: too few arguments
+
+    $ ./bin/kafka-storage.sh random-uuid
+    n0QNQ_eZRlyS3-FzEz0wvQ
+    
+    $ ./bin/kafka-storage.sh format -t n0QNQ_eZRlyS3-FzEz0wvQ -c ./config/kraft/server.properties
+    Formatting /tmp/kraft-combined-logs
+    
+    $ kafka-server-start.sh ./config/kraft/server.properties
+
+    # 
+
+```
 - Dockerzie Kafka + Testing 
 - Single Zookeeper + Multiple Kafka Cluster Setup + Replication Factor of 3 
 - Multi Zookeeper + Multiple Kafka Cluster Setup + Replication Factor of 3 (Optional)

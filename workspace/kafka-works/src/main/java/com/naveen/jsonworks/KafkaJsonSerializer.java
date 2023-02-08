@@ -22,7 +22,4 @@ public class KafkaJsonSerializer implements Serializer{
 		
 		return retVal;
 	}
-
-	
-	
 }

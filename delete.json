@@ -1,0 +1,37 @@
+{
+    "$schema": "/mediawiki/recentchange/1.0.0",
+    "meta": {
+        "uri": "https://www.wikidata.org/wiki/Q39460297",
+        "request_id": "dd4971ab-ac8c-4581-9b90-20f86ef9778a",
+        "id": "ee7ac5cf-4539-49ae-bcbe-70fa94680324",
+        "dt": "2023-02-08T07:46:15Z",
+        "domain": "www.wikidata.org",
+        "stream": "mediawiki.recentchange",
+        "topic": "eqiad.mediawiki.recentchange",
+        "partition": 0,
+        "offset": 4519664953
+    },
+    "id": 1885372441,
+    "type": "edit",
+    "namespace": 0,
+    "title": "Q39460297",
+    "comment": "/* wbsetlabel-set:1|en */ The seminoma cell line TCam-2 is sensitive to HDAC inhibitor depsipeptide but tolerates various other chemotherapeutic drugs and loss of NANOG expression",
+    "timestamp": 1675842375,
+    "user": "KrBot",
+    "bot": true,
+    "minor": false,
+    "patrolled": true,
+    "length": {
+        "old": 75194,
+        "new": 75193
+    },
+    "revision": {
+        "old": 1829200049,
+        "new": 1829200056
+    },
+    "server_url": "https://www.wikidata.org",
+    "server_name": "www.wikidata.org",
+    "server_script_path": "/w",
+    "wiki": "wikidatawiki",
+    "parsedcomment": "<span dir=\"auto\"><span class=\"autocomment\">Изменено название [en]: </span></span> The seminoma cell line TCam-2 is sensitive to HDAC inhibitor depsipeptide but tolerates various other chemotherapeutic drugs and loss of NANOG expression"
+}
