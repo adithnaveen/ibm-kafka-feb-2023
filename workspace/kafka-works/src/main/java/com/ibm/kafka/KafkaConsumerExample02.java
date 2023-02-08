@@ -1,9 +1,12 @@
 package com.ibm.kafka;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
@@ -25,5 +28,30 @@ public class KafkaConsumerExample02 {
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<>(prop);
 		consumer.subscribe(Arrays.asList("d2-first-topic"));
 		
+		
+		while(true) {
+			log.info("------- Polling -----------");
+			ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000)); 
+			
+			for(ConsumerRecord<String, String> record: records) {
+				 log.info(" Key " + record.key() +
+						  " Value " + record.value() +
+						  " Partition " + record.partition() +
+						  " OffSet " + record.offset());
+			}
+			
+		}
+		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
