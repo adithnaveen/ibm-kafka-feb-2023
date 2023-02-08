@@ -44,14 +44,3 @@ public class KafkaConsumerExample02 {
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
