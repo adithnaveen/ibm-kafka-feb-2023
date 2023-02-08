@@ -3,6 +3,7 @@ package com.naveen.jsonworks;
 import java.util.Properties;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,5 +22,24 @@ public class KafkaJsonProducerExample {
 		prop.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 		prop.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
+
+		EmployeeDAO dao = new EmployeeDAO(); 
+		
+		Employee emp = dao.getEmployee(101, "Veda Murthy");
+		
+		ProducerRecord<String, Employee> producerRecord = 
+					new ProducerRecord<String, Employee>("d2-first-topic", emp);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
