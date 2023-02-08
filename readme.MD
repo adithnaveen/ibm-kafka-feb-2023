@@ -283,3 +283,24 @@ first-application d2-first-topic  2          26              26              0  
     - 5.3 generate a record 
     - 5.4 Send and get the ack 
     - 5.5 close + flush 
+
+--- 
+
+# Day 3 
+
+### Question 
+- why package is needed 
+- explain the need of programming (kafka client)
+- retro of java producer program 
+
+## Agenda 
+- Kafka Consumer 
+- Send Multiple messages with Java to Kafka 
+- Send Json (Serialize / Deserialize) - Show connecting (Mock) with DB 
+- Process Large data into your system (Wikimedia)
+- KRaft - Start Kafka Without Zookeeper
+- Dockerzie Kafka + Testing 
+- Single Zookeeper + Multiple Kafka Cluster Setup + Replication Factor of 3 
+- Multi Zookeeper + Multiple Kafka Cluster Setup + Replication Factor of 3 (Optional)
+- Setting up kafka with spring boot application (Option)
+
