@@ -323,7 +323,7 @@ first-application d2-first-topic  2          26              26              0  
 
 
 ```
-
+<pre>
 docker-compose.yml 
 
 ———————----------
@@ -375,8 +375,10 @@ kafka-console-consumer --bootstrap-server broker:9092 \
 —————————————-
 docker-compose down
 —————————————-
-
+</pre>
 ```
+
+
 ```
 
 - Single Zookeeper + Multiple Kafka Cluster Setup + Replication Factor of 3 
