@@ -31,8 +31,6 @@ public class KafkaProducerExample01 {
 		ProducerRecord<String, String> producerRecord = 
 			new ProducerRecord<String, String>("d2-first-topic", "Hello From Java1");
 		
-		 
-		
 		producer.send(producerRecord, new Callback() {
 			
 			@Override
