@@ -298,7 +298,7 @@ first-application d2-first-topic  2          26              26              0  
 - Send Multiple messages with Java to Kafka (Done)
 - Send Json (Serialize / Deserialize) - Show connecting (Mock) with DB (Done)
 - Process Large data into your system (Wikimedia) (done)
-- KRaft - Start Kafka Without Zookeeper
+- KRaft - Start Kafka Without Zookeeper - (need to reply)
 
 ```
     $ ./bin/kafka-storage.sh
@@ -318,6 +318,30 @@ first-application d2-first-topic  2          26              26              0  
 ```
 - Dockerzie Kafka + Testing 
 - Single Zookeeper + Multiple Kafka Cluster Setup + Replication Factor of 3 
+
+```
+    > step1 - Start Zookeeper 
+    > Step2 - Make a copy of server.properties -> server1.properties, server2.properties 
+    > Step3 - Content server.properties - 9092 broker.id=0 + log path to be changed + plain text uncomment (optional)
+    > Step4 - Content server1.properties - 9093 broker.id=1 + log path to be changed + plain text uncomment (optional)
+    > Step5 - Content server2.properties - 9094 broker.id=2 + log path to be changed + plain text uncomment (optional)
+    > Step6 - start the kafka with property information server.properties, server1.properites, server2.properties 
+    > Step7 - Create the topic 
+        > kafka-topics.sh --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --topic partition-with-replica --create --partit
+ions 3 --replication-factor 3
+
+        >  kafka-topics.sh --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --list
+
+        > kafka-topics.sh --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --describe --topic partition-with-replica
+    > Step8 - Launch the producer 
+        > kafka-console-producer.sh --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --topic partition-with-replica
+    
+    > Step- Launch the consumer 
+        >  kafka-console-consumer.sh --bootstrap-server localhost:9092,localhost:9093,localhost:9094 --topic partition-with-replica
+
+    - Now you can kill the kafka, until atleast 1 kafka is up the messages are delivered 
+
+```
 - Multi Zookeeper + Multiple Kafka Cluster Setup + Replication Factor of 3 (Optional)
 - Setting up kafka with spring boot application (Option)
 
